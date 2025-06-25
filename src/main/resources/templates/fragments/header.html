@@ -7,11 +7,17 @@
 			            <div th:if="${userDetails}" class="d-flex align-items-center gap-3 ms-3">
 			                <span th:text="${userDetails.username}" class="fw-semibold"></span>
 
-			                <!-- Profilo con icona -->
+			                <!-- Profilo -->
 			                <a th:href="@{/profilo}" class="btn btn-outline-info btn-sm rounded-3 d-flex align-items-center gap-1">
 			                    <i class="bi bi-person-circle"></i>
 			                    <span>Profilo</span>
 			                </a>
+							<!--Ricerca-->
+							<form th:action="@{/search}" method="get">
+							    <input type="text" name="parola" placeholder="Cerca qualcosa..." />
+							    <button type="submit">Cerca</button>
+							</form>
+
 
 			                <!-- Logout -->
 			                <a href="/logout" class="btn btn-outline-danger btn-sm rounded">Logout</a>

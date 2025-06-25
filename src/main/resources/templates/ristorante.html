@@ -30,6 +30,26 @@
     <li th:each="c : ${ristorante.chefs}" th:text="${c.nome + ' ' + c.cognome}">Nome Cognome</li>
 </ul>
 
+<!-- Esperienze Utenti -->
+<h2>Esperienze degli utenti</h2>
+<div th:if="${#lists.isEmpty(ristorante.esperienze)}">
+    <p>Nessuna esperienza disponibile per questo ristorante.</p>
+</div>
+<div th:unless="${#lists.isEmpty(ristorante.esperienze)}">
+    <ul>
+        <li th:each="e : ${ristorante.esperienze}">
+            <strong th:text="${e.user.name + ' ' + e.user.surname}">Utente</strong>:
+            <span th:text="${e.titolo}">Titolo</span> -
+            <span th:text="${e.descrizione}">Descrizione esperienza</span> 
+            (<span th:text="${e.stelle}">Stelle</span>/5)
+        </li>
+    </ul>
+</div>
+
+<!-- Aggiungi Esperienza -->
+<div th:if="${userDetails != null}">
+    <a th:href="@{'/esperienze/formNewEsperienza/' + ${ristorante.id}}">Aggiungi la tua esperienza</a>
+</div>
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
 

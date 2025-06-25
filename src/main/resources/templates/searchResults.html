@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Risultati Ricerca</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Risultati della ricerca</h1>
+
+<!-- Se ci sono chef trovati -->
+<div th:if="${chefs != null and !chefs.isEmpty()}">
+    <h2>Chef trovati</h2>
+    <ul>
+        <li th:each="c : ${chefs}">
+            <a th:href="@{'/chef/' + ${c.id}}" th:text="${c.nome + ' ' + c.cognome}">Chef</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Se ci sono ristoranti trovati -->
+<div th:if="${ristoranti != null and !ristoranti.isEmpty()}">
+    <h2>Ristoranti trovati</h2>
+    <ul>
+        <li th:each="r : ${ristoranti}">
+            <a th:href="@{'/ristorante/' + ${r.id}}" th:text="${r.nome + ' - ' + r.citta}">Ristorante</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Nessun risultato trovato -->
+<div th:if="${(chefs == null or chefs.isEmpty()) and (ristoranti == null or ristoranti.isEmpty())}">
+    <p>Nessun risultato trovato.</p>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profilo Utente</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Profilo Utente</h1>
+
+<div>
+    <p><strong>Nome:</strong> <span th:text="${user.name}">Nome</span></p>
+    <p><strong>Cognome:</strong> <span th:text="${user.surname}">Cognome</span></p>
+    <p><strong>Username:</strong> <span th:text="${username}">Username</span></p>
+
+    <a th:href="@{/profilo/modificaProfilo}">Modifica Profilo</a>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

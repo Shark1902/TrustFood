@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,11 @@ public class ChefService {
 	public void deleteChef(Long id) {
 		chefRepository.deleteById(id);
 		
+	}
+
+	public List<Chef> findByNomeOrCognomeOrOrigine(String parola) {
+		// TODO Auto-generated method stub
+		return this.chefRepository.findByNomeIgnoreCaseContainingOrCognomeIgnoreCaseContainingOrOrigineIgnoreCaseContaining(parola, parola, parola);
 	}
 
 }

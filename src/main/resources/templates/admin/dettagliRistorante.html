@@ -32,6 +32,26 @@
     <li th:each="c : ${ristorante.chefs}" th:text="${c.nome + ' ' + c.cognome}">Chef</li>
 </ul>
 
+<h2>Esperienze degli utenti</h2>
+<div th:if="${#lists.isEmpty(ristorante.esperienze)}">
+    <p>Nessuna esperienza disponibile per questo ristorante.</p>
+</div>
+<div th:unless="${#lists.isEmpty(ristorante.esperienze)}">
+    <ul>
+        <li th:each="e : ${ristorante.esperienze}">
+            <strong th:text="${e.user.name + ' ' + e.user.surname}">Utente</strong>:
+            <span th:text="${e.titolo}">Titolo</span> -
+            <span th:text="${e.descrizione}">Descrizione esperienza</span>
+            (<span th:text="${e.stelle}">Stelle</span>/5)
+
+            <!-- Pulsante di rimozione per l'admin -->
+            <form th:action="@{'/admin/esperienze/' + ${e.id} + '/rimuovi'}" method="post" style="display:inline;">
+                <button type="submit">Rimuovi</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
 <!-- Azioni -->
 <div style="margin-top: 2em;">
     <a th:href="@{/admin/formUpdateRistorante/{id}(id=${ristorante.id})}">️ Modifica</a> |

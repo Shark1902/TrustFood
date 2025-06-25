@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,11 @@ public class RistoranteService {
 	public void deleteRistorante(Long id) {
 		ristoranteRepository.deleteById(id);
 		
+	}
+
+	public List<Ristorante> findByNomeOrCitta(String parola) {
+		// TODO Auto-generated method stub
+		return this.ristoranteRepository.findByNomeIgnoreCaseContainingOrCittaIgnoreCaseContaining(parola,parola);
 	}
 	
 	

@@ -5,30 +5,26 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
 
-
 @Controller
 public class UserController {
 
-	@Autowired
+    @Autowired
     private CredentialsService credentialsService;
 
     @Autowired
     private UserService userService;
 
+    // Visualizza il profilo utente
     @GetMapping("/profilo")
-    public String showProfile(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+    public String mostraProfilo(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         Credentials credentials = credentialsService.getCredentials(currentUser.getUsername());
-
         if (credentials == null)
             return "redirect:/login";
 
@@ -37,10 +33,10 @@ public class UserController {
         return "user/profilo";
     }
 
-    @GetMapping("/profilo/modifica")
-    public String editProfileForm(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+    // Form per modificare profilo
+    @GetMapping("/profilo/modificaProfilo")
+    public String formModificaProfilo(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         Credentials credentials = credentialsService.getCredentials(currentUser.getUsername());
-
         if (credentials == null)
             return "redirect:/login";
 
@@ -48,12 +44,12 @@ public class UserController {
         return "user/modificaProfilo";
     }
 
-    @PostMapping("/profilo/modifica")
-    public String saveProfile(@ModelAttribute("user") User updatedUser,
-                              @AuthenticationPrincipal UserDetails currentUser) {
+    // Salva i dati modificati
+    @PostMapping("/profilo/modificaProfilo")
+    public String salvaModificheProfilo(@ModelAttribute("user") User updatedUser,
+                                        @AuthenticationPrincipal UserDetails currentUser) {
 
         Credentials credentials = credentialsService.getCredentials(currentUser.getUsername());
-
         if (credentials == null)
             return "redirect:/login";
 
@@ -65,5 +61,4 @@ public class UserController {
 
         return "redirect:/profilo";
     }
-
 }
