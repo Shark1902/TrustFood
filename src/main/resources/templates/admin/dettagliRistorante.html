@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Dettagli Ristorante</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Dettagli Ristorante</h1>
+
+<div style="margin-bottom: 1em;">
+    <p><strong>Nome:</strong> <span th:text="${ristorante.nome}">Nome</span></p>
+    <p><strong>Città:</strong> <span th:text="${ristorante.citta}">Città</span></p>
+</div>
+
+<h2>Chef associati</h2>
+<ul>
+    <li th:each="c : ${ristorante.chefs}" th:text="${c.nome + ' ' + c.cognome}">Chef</li>
+</ul>
+
+<!-- Azioni -->
+<div style="margin-top: 2em;">
+    <a th:href="@{/admin/formUpdateRistorante/{id}(id=${ristorante.id})}">️ Modifica</a> |
+    <a th:href="@{/admin/rimuoviRistorante/{id}(id=${ristorante.id})}"> Rimuovi</a> |
+    <a th:href="@{/admin/indexRistorante}"> Torna alla lista</a>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

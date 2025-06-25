@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dettagli Ristorante</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1 th:text="${ristorante.nome}">Nome Ristorante</h1>
+
+<p><strong>Città:</strong> <span th:text="${ristorante.citta}">Città</span></p>
+<div>
+		                    <div th:each="img : ${ristorante.images}">
+		                        <img th:src="@{${img.name}}"
+									 style="max-width: 200px; max-height: 300px;"
+		                             
+		                             loading="eager">
+		                    </div>
+		                
+		                <!-- Nessuna immagine -->
+		                <div th:if="${#lists.isEmpty(ristorante.images)}"
+		                     class="no-images-placeholder">
+		                    Nessuna immagine disponibile
+		                </div>
+
+<h2>Chef associati</h2>
+<ul>
+    <li th:each="c : ${ristorante.chefs}" th:text="${c.nome + ' ' + c.cognome}">Nome Cognome</li>
+</ul>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

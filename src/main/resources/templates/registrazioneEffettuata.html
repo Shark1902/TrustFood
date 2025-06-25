@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TrustFood - Registrazione completata</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1 style="text-align: center; margin-top: 2em;">Registrazione completata con successo!</h1>
+<p style="text-align: center;">Benvenuto su <strong>TrustFood</strong>.</p>
+
+<div style="max-width: 400px; margin: 2em auto; border: 1px solid #ccc; border-radius: 8px; padding: 1em;">
+    <h3 style="margin-bottom: 1em;">I tuoi dati:</h3>
+    <p><strong>Nome:</strong> <span th:text="${user.name}">Mario</span></p>
+    <p><strong>Cognome:</strong> <span th:text="${user.surname}">Rossi</span></p>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TrustFood - Registrazione</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1 style="text-align: center;">Registrazione nuovo utente</h1>
+
+<div style="max-width: 500px; margin: 0 auto; padding: 1em; border: 1px solid #ccc; border-radius: 8px;">
+    <form th:action="@{/register}" method="POST">
+
+        <div style="margin-bottom: 1em;">
+            <label for="name">Nome</label><br>
+            <input type="text" id="name" required th:field="${user.name}" style="width: 100%;" />
+            <div style="color: red;" th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+            <label for="surname">Cognome</label><br>
+            <input type="text" id="surname" required th:field="${user.surname}" style="width: 100%;" />
+            <div style="color: red;" th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+            <label for="username">Username</label><br>
+            <input type="text" id="username" required th:field="${credentials.username}" style="width: 100%;" />
+            <div style="color: red;" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}"></div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+            <label for="password">Password</label><br>
+            <input type="password" id="password" required th:field="${credentials.password}" style="width: 100%;" />
+            <div style="color: red;" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}"></div>
+        </div>
+
+        <div style="text-align: center;">
+            <button type="submit">Registra</button>
+        </div>
+    </form>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

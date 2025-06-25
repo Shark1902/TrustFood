@@ -39,8 +39,8 @@ public class ChefController {
 	
 	@GetMapping("/chef/{id}")
 	public String mostraChef(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("chef", chefService.findById(id).getRistoranti());
-		model.addAttribute("ristoranti", chefService);
+		model.addAttribute("chef", chefService.findById(id));
+		model.addAttribute("ristoranti", chefService.findById(id).getRistoranti());
 		return "chef";
 	}
 	

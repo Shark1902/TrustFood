@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo Ristorante</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Inserisci un nuovo ristorante</h1>
+
+<form th:action="@{/admin/formNewRistorante}" th:object="${ristorante}" method="post" enctype="multipart/form-data">
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" th:field="*{nome}" required /><br><br>
+
+    <label for="citta">Città:</label><br>
+    <input type="text" id="citta" th:field="*{citta}" required /><br><br>
+
+    <label for="chefs">Chef associati:</label><br>
+    <select id="chefs" th:field="*{chefs}" multiple size="5">
+        <option th:each="c : ${chefs}" th:value="${c.id}" th:text="${c.nome + ' ' + c.cognome}">Chef</option>
+    </select><br><br>
+	
+	<div>
+	<label for="imageFiles">Immagini</label>
+	<input type="file"  name="imageFiles"  id="imageFiles"  multiple   accept="image/*"  required/>
+	</div>
+
+    <button type="submit">Salva</button>
+</form>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

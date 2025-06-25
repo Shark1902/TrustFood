@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TrustFood - Home</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header (incluso da fragments/header.html) -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Benvenuto su TrustFood</h1>
+<p>Scopri i migliori ristoranti e i loro chef d'eccellenza.</p>
+
+<ul>
+    <li><a href="/ristoranti">Visualizza Ristoranti</a></li>
+    <li><a href="/chefs">Visualizza Chef</a></li>
+</ul>
+
+<!-- Footer (incluso da fragments/footer.html) -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

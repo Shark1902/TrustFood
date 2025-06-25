@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chef</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>I nostri Chef</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Origine</th>
+            <th>Dettagli</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="c : ${chefs}">
+            <td th:text="${c.nome}">Nome</td>
+            <td th:text="${c.cognome}">Cognome</td>
+            <td th:text="${c.origine}">Origine</td>
+            <td>
+                <a th:href="@{/chef/{id}(id=${c.id})}">Vai</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

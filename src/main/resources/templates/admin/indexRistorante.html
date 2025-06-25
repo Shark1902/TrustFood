@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Ristoranti</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Gestione Ristoranti</h1>
+
+<table border="1" style="width: 100%; margin-top: 1em;">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Città</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="r : ${ristoranti}">
+            <td th:text="${r.nome}">Nome</td>
+            <td th:text="${r.citta}">Città</td>
+            <td>
+                <a th:href="@{'/admin/dettagliRistorante/' + ${r.id}}">Dettagli</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p style="margin-top: 1em;">
+    <a th:href="@{/admin/formNewRistorante}"> Aggiungi nuovo ristorante</a>
+</p>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

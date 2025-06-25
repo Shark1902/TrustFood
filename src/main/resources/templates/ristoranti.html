@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ristoranti</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Ristoranti</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Città</th>
+            <th>Dettagli</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="r : ${ristoranti}">
+            <td th:text="${r.nome}">Nome</td>
+            <td th:text="${r.citta}">Città</td>
+            <td>
+                <a th:href="@{/ristorante/{id}(id=${r.id})}">Vai</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

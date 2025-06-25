@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifica Chef</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Modifica Chef</h1>
+
+<form th:action="@{/admin/formUpdateChef/{id}(id=${chef.id})}" 
+      th:object="${chef}" method="post" style="margin-top: 1em;">
+
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" th:field="*{nome}" required /><br><br>
+
+    <label for="cognome">Cognome:</label><br>
+    <input type="text" id="cognome" th:field="*{cognome}" required /><br><br>
+
+    <label for="dataNascita">Data di nascita:</label><br>
+    <input type="date" id="dataNascita" th:field="*{dataNascita}" required /><br><br>
+
+    <label for="origine">Origine:</label><br>
+    <input type="text" id="origine" th:field="*{origine}" required /><br><br>
+
+    <button type="submit">Salva modifiche</button>
+</form>
+
+<p style="margin-top: 1em;">
+    <a th:href="@{/admin/indexChef}">🔙 Torna alla lista</a>
+</p>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

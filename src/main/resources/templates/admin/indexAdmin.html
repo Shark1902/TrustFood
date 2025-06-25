@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>TrustFood - Area Admin</title>
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1 style="text-align: center;">Benvenuto nell'Area Admin di TrustFood</h1>
+
+<p style="text-align: center; font-style: italic; margin-bottom: 2em;">
+    &raquo; Gestisci ristoranti, chef ed esperienze &laquo;
+</p>
+
+
+
+<div style="text-align: center;">
+    <a th:href="@{/admin/indexChef}" style="margin: 0 1em;">Gestione Chef</a>
+    <a th:href="@{/admin/indexRistorante}" style="margin: 0 1em;">Gestione Ristoranti</a>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

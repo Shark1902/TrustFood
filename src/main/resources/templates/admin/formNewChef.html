@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo Chef</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Inserisci un nuovo Chef</h1>
+
+<form th:action="@{/admin/formNewChef}" th:object="${chef}" method="post" enctype="multipart/form-data">
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" th:field="*{nome}" required /><br><br>
+
+    <label for="cognome">Cognome:</label><br>
+    <input type="text" id="cognome" th:field="*{cognome}" required /><br><br>
+
+    <label for="dataNascita">Data di nascita:</label><br>
+    <input type="date" id="dataNascita" th:field="*{dataNascita}" required /><br><br>
+
+    <label for="origine">Origine:</label><br>
+    <input type="text" id="origine" th:field="*{origine}" required /><br><br>
+	
+	<div>
+	<label for="foto" class="form-label">Foto chef:</label>
+	<input type="file" id="foto" name="fotoFile" accept="image/*" />	            
+	</div>
+
+
+    <button type="submit">Salva</button>
+</form>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
