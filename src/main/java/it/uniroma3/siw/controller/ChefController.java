@@ -94,11 +94,13 @@ public class ChefController {
 	}
 	
 	@PostMapping(value="/admin/formUpdateChef/{id}")
-	public String updateChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
+	public String updateChef(@PathVariable("id") Long id,@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			return "admin/formUpdateChef";
 		}
-		
+		//mantieni la foto di prima
+		Chef chefEsistente=chefService.findById(id);
+		chef.setFoto(chefEsistente.getFoto());
 		chefService.save(chef);
 		return "redirect:/chef/"+chef.getId();
 	}

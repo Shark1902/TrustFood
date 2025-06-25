@@ -13,6 +13,14 @@
 
 <p><strong>Data di nascita:</strong> <span th:text="${chef.dataNascita}">YYYY-MM-DD</span></p>
 <p><strong>Origine:</strong> <span th:text="${chef.origine}">Origine</span></p>
+<div >
+                    <img th:if="${chef.foto != null}"
+                         th:src="@{${chef.foto.name}}"
+                         th:alt="'Foto di ' + ${chef.nome} + ' ' + ${chef.cognome}" />
+                    <img th:if="${chef.foto == null}"
+                         class="no-images-placeholder"
+                         alt="Nessuna foto disponibile" />
+                </div>
 
 <h2>Ristoranti associati</h2>
 <ul>

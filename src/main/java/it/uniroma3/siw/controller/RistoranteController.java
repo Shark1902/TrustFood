@@ -104,11 +104,14 @@ public class RistoranteController {
 	}
 	
 	@PostMapping(value="/admin/formUpdateRistorante/{id}")
-	public String salvaModificaRistorante(@Valid @ModelAttribute("ristorante") Ristorante ristorante, BindingResult bindingResult, Model model) {
+	public String salvaModificaRistorante(@PathVariable("id") Long id,@Valid @ModelAttribute("ristorante") Ristorante ristorante, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			return "admin/formUpdateRistorante";
 		}
-		
+		Ristorante ristoranteEsistente = ristoranteService.findById(id);
+
+	    // Mantieni le immagini già salvate
+	    ristorante.setImages(ristoranteEsistente.getImages());
 		ristoranteService.save(ristorante);
 		return "redirect:/ristorante/" +ristorante.getId();
 	}
