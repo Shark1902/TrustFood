@@ -10,6 +10,8 @@ public interface RistoranteRepository extends CrudRepository<Ristorante, Long> {
 
 	boolean existsByNomeAndCitta(String nome, String citta);
 
-	List<Ristorante> findByNomeIgnoreCaseContainingOrCittaIgnoreCaseContaining(String nome, String citta);
+	List<Ristorante> findByNomeIgnoreCaseContainingOrCittaIgnoreCaseContainingOrCucinaIgnoreCaseContaining(String nome, String citta, String cucina);
+
+	List<Ristorante> findTop3ByOrderByIdDesc();
 
 }

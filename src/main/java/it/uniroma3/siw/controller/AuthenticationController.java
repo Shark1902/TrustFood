@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.RistoranteService;
 import it.uniroma3.siw.service.UserService;
 import jakarta.validation.Valid;
 
 @Controller
 public class AuthenticationController {
 	
-
+	@Autowired
+	private RistoranteService ristoranteService;
 
 	
 	@Autowired
@@ -45,6 +47,8 @@ public class AuthenticationController {
 
 	@GetMapping(value = "/") 
 	public String index(Model model) {
+		model.addAttribute("ristorantiInEvidenza", ristoranteService.findTop3ByOrderByIdDesc());
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
 	        return "index.html";

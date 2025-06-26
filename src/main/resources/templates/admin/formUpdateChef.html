@@ -3,40 +3,64 @@
 <head>
     <title>Modifica Chef</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/trustfood-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<h1>Modifica Chef</h1>
+<div class="container mt-5 mb-5">
+    <h1 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-user-pen text-warning me-2"></i>
+        Modifica Chef
+    </h1>
+    <div class="hero-divider mx-auto mb-4"></div>
 
-<form th:action="@{/admin/formUpdateChef/{id}(id=${chef.id})}" 
-      th:object="${chef}" method="post" style="margin-top: 1em;">
+    <form th:action="@{/admin/formUpdateChef/{id}(id=${chef.id})}" 
+          th:object="${chef}" method="post" class="mx-auto" style="max-width: 600px;">
 
-    <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{id}" />
 
-    <label for="nome">Nome:</label><br>
-    <input type="text" id="nome" th:field="*{nome}" required /><br><br>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" class="form-control" required />
+        </div>
 
-    <label for="cognome">Cognome:</label><br>
-    <input type="text" id="cognome" th:field="*{cognome}" required /><br><br>
+        <div class="mb-3">
+            <label for="cognome" class="form-label">Cognome:</label>
+            <input type="text" id="cognome" th:field="*{cognome}" class="form-control" required />
+        </div>
 
-    <label for="dataNascita">Data di nascita:</label><br>
-    <input type="date" id="dataNascita" th:field="*{dataNascita}" required /><br><br>
+        <div class="mb-3">
+            <label for="dataNascita" class="form-label">Data di nascita:</label>
+            <input type="date" id="dataNascita" th:field="*{dataNascita}" class="form-control" required />
+        </div>
 
-    <label for="origine">Origine:</label><br>
-    <input type="text" id="origine" th:field="*{origine}" required /><br><br>
+        <div class="mb-4">
+            <label for="origine" class="form-label">Origine:</label>
+            <input type="text" id="origine" th:field="*{origine}" class="form-control" required />
+        </div>
 
-    <button type="submit">Salva modifiche</button>
-</form>
+        <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="fas fa-save me-1"></i>Salva modifiche
+            </button>
+        </div>
+    </form>
 
-<p style="margin-top: 1em;">
-    <a th:href="@{/admin/indexChef}">🔙 Torna alla lista</a>
-</p>
+    <div class="text-center mt-4">
+        <a class="btn btn-link" th:href="@{/admin/indexChef}">
+            <i class="fas fa-arrow-left me-1"></i> Torna alla lista
+        </a>
+    </div>
+</div>
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

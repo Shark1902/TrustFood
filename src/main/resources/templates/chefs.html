@@ -3,37 +3,50 @@
 <head>
     <title>Chef</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/trustfood-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<h1>I nostri Chef</h1>
+<div class="container mt-5">
+    <h1 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-chef-hat me-2 text-warning" style="font-size: 2.2rem;"></i>I nostri Chef
+    </h1>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>Origine</th>
-            <th>Dettagli</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="c : ${chefs}">
-            <td th:text="${c.nome}">Nome</td>
-            <td th:text="${c.cognome}">Cognome</td>
-            <td th:text="${c.origine}">Origine</td>
-            <td>
-                <a th:href="@{/chef/{id}(id=${c.id})}">Vai</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover bg-white">
+            <thead class="table-warning">
+                <tr class="text-center">
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Origine</th>
+                    <th>Dettagli</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${chefs}" class="align-middle">
+                    <td th:text="${c.nome}"></td>
+                    <td th:text="${c.cognome}"></td>
+                    <td th:text="${c.origine}"></td>
+                    <td class="text-center">
+                        <a th:href="@{/chef/{id}(id=${c.id})}" class="btn btn-outline-warning btn-sm">
+                            <i class="fas fa-eye me-1"></i>Vai
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

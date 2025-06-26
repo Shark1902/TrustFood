@@ -40,9 +40,14 @@ public class RistoranteService {
 		
 	}
 
-	public List<Ristorante> findByNomeOrCitta(String parola) {
+	public List<Ristorante> findByNomeOrCittaOrCucina(String parola) {
 		// TODO Auto-generated method stub
-		return this.ristoranteRepository.findByNomeIgnoreCaseContainingOrCittaIgnoreCaseContaining(parola,parola);
+		return this.ristoranteRepository.findByNomeIgnoreCaseContainingOrCittaIgnoreCaseContainingOrCucinaIgnoreCaseContaining(parola,parola,parola);
+	}
+
+	public List<Ristorante> findTop3ByOrderByIdDesc() {
+		// TODO Auto-generated method stub
+		return ristoranteRepository.findTop3ByOrderByIdDesc();
 	}
 	
 	

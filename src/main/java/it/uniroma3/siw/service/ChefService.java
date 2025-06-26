@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class ChefService {
 	public Iterable<Chef> findAll() {
 		// TODO Auto-generated method stub
 		return chefRepository.findAll();
+	}
+	
+	public Iterable<Chef> findById(Set<Long> id) {
+		// TODO Auto-generated method stub
+		return chefRepository.findAllById(id);
 	}
 
 	public Chef findById(Long id) {

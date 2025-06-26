@@ -3,22 +3,160 @@
 <head>
     <title>TrustFood - Home</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/trustfood-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
-<!-- Header (incluso da fragments/header.html) -->
-<div th:replace="fragments/header :: header"></div>
+    <!-- Header -->
+    <div th:replace="fragments/header :: header"></div>
 
-<h1>Benvenuto su TrustFood</h1>
-<p>Scopri i migliori ristoranti e i loro chef d'eccellenza.</p>
+    <!-- Hero Section -->
+	<section class="hero-section position-relative overflow-hidden mt-5">
+	    <div class="container position-relative">
+	        <div class="row align-items-center min-vh-50">
+	            <div class="col-lg-8">
+	                <div class="hero-content text-start">
+						<h1 class="hero-title text-dark fw-bold mb-2">
+							<i class="fas fa-utensils text-warning" style="font-size: 2.8rem;"></i>
+						    <span style="font-style: italic; font-size: 2.8rem;">Benvenuto su</span>
+						    <span style="color: #a94438; font-size: 3.5rem;">TrustFood</span>
+						</h1>
 
-<ul>
-    <li><a href="/ristoranti">Visualizza Ristoranti</a></li>
-    <li><a href="/chefs">Visualizza Chef</a></li>
-</ul>
+						<!-- Barra decorativa visibile -->
+						<div class="d-flex justify-content-center">
+						    <div class="hero-divider"></div>
+						</div>
 
-<!-- Footer (incluso da fragments/footer.html) -->
-<div th:replace="fragments/footer :: footer"></div>
+						<p class="lead fs-3 mb-3" style="font-style: italic;">
+						    Scopri i migliori ristoranti e i loro chef d'eccellenza.
+						</p>
+						<p class="fs-5 opacity-75 mb-4" style="font-style: italic;">
+						    Condividi esperienze culinarie autentiche nella community del buon cibo
+						</p>
 
+
+	                    <div class="hero-buttons">
+	                        <a href="/ristoranti" class="btn btn-md me-3 px-3 py-2"
+	                           style="background-color: #d4a437; color: white; border: none;">
+	                            <i class="fas fa-search me-2"></i>Esplora Ristoranti
+	                        </a>
+	                        <a href="/chefs" class="btn btn-outline-dark btn-md px-3 py-2"
+	                           style="border-color: #4e2a1e; color: #4e2a1e;">
+	                            <i class="fas fa-user-chef me-2"></i>Scopri Chef
+	                        </a>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-lg-4 text-center">
+	                <i class="fas fa-user-chef hero-icon"></i>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+
+        <!-- Ristoranti in evidenza -->
+        <section class="mb-5 mt-5 text-center">
+            <h2 class="section-title mx-auto d-inline-block">
+                <i class="fas fa-star text-warning me-2"></i>Ristoranti in evidenza
+            </h2>
+            <div class="row mt-4">
+                <div class="col-lg-4 col-md-6" th:each="r : ${ristorantiInEvidenza}">
+                    <div class="card restaurant-card h-100">
+                        <div th:if="${not #lists.isEmpty(r.images)}">
+                            <img th:src="@{${r.images[0].name}}" class="card-img-top restaurant-image" alt="Immagine ristorante">
+                        </div>
+                        <div th:unless="${not #lists.isEmpty(r.images)}" class="no-image-placeholder">
+                            <div class="text-center">
+                                <i class="fas fa-image fa-3x mb-2"></i>
+                                <p class="mb-0"><em>Nessuna immagine disponibile</em></p>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a th:href="@{'/ristorante/' + ${r.id}}" th:text="${r.nome}" class="text-decoration-none text-dark fw-bold">Nome</a>
+                            </h5>
+                            <div class="card-text mb-3">
+                                <p class="mb-2">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                                    <span th:text="${r.citta}" class="fw-semibold">Citta</span>
+                                </p>
+                                <span class="badge cuisine-badge">
+                                    <i class="fas fa-utensils me-1"></i>
+                                    <span th:text="${r.cucina}">Cucina</span>
+                                </span>
+                            </div>
+                            <div class="mt-auto">
+                                <a th:href="@{'/ristorante/' + ${r.id}}" class="btn btn-outline-warning w-100 fw-semibold">
+                                    <i class="fas fa-eye me-2"></i>Scopri di piu'
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esplora TrustFood -->
+        <section class="text-center mb-5 mt-5">
+			<h2 class="section-title">Esplora il mondo del gusto con <span style="color: #a94438; font-style: italic;">TrustFood</span></h2>
+
+            <p class="lead mb-4">Consulta i migliori ristoranti e conosci gli chef piu' apprezzati</p>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a href="/ristoranti" class="btn btn-warning btn-lg nav-buttons fw-semibold">
+                        <i class="fas fa-store me-2"></i>Visualizza Ristoranti
+                    </a>
+                </div>
+                <div class="col-auto">
+					<a href="/chefs" class="btn btn-lg nav-buttons fw-semibold"
+					   style="background-color: #a94438; color: white; border: none;">
+					    <i class="fas fa-chef-hat me-2"></i>Visualizza Chef
+					</a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="mb-5 mt-5">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Community</h5>
+                            <p class="card-text">Condividi le tue esperienze culinarie con appassionati di cucina autentica</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-award fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Qualita'</h5>
+                            <p class="card-text">Scopri ristoranti selezionati e chef di talento per esperienze gastronomiche uniche</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">Passione</h5>
+                            <p class="card-text">Amiamo e valorizziamo le tradizioni culinarie e i sapori autentici</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

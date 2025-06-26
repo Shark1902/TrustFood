@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Chef;
 import it.uniroma3.siw.model.ImageEntity;
 import it.uniroma3.siw.model.Ristorante;
 import it.uniroma3.siw.service.ChefService;
@@ -112,6 +114,7 @@ public class RistoranteController {
 
 	    // Mantieni le immagini già salvate
 	    ristorante.setImages(ristoranteEsistente.getImages());
+	    ristorante.setChefs(ristoranteEsistente.getChefs());
 		ristoranteService.save(ristorante);
 		return "redirect:/ristorante/" +ristorante.getId();
 	}
@@ -121,6 +124,40 @@ public class RistoranteController {
 		ristoranteService.deleteRistorante(id);
 		return "redirect:/ristoranti";
 		
+	}
+	//visualizza form per aggiungere uno chef al ristorante
+	@GetMapping(value="/admin/formAddChefToRistorante/{id}")
+	public String formAddChefTo(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("ristorante", ristoranteService.findById(id));
+		model.addAttribute("chefs", chefService.findAll());
+		return "admin/formAddChefToRistorante";
+	}
+	
+	//salva lo chef nel ristorante
+	@PostMapping(value="/admin/addChefToRistorante/{id}")
+	public String salvaChefToRistorante(@PathVariable("id") Long id,
+            @RequestParam Set<Long> chef_id) {
+		Ristorante ristorante=ristoranteService.findById(id);
+		Iterable<Chef> chefToAdd=chefService.findById(chef_id);
+		
+		List<Chef> chefs=ristorante.getChefs();
+		for(Chef c : chefToAdd) {
+			chefs.add(c);
+		}
+		ristoranteService.save(ristorante);
+		return "redirect:/ristorante/"+id;
+	}
+	
+	//rimuovi chef dal ristorante
+	@PostMapping(value="/admin/rimuoviChefToRistorante/{ristoranteId}")
+	public String rimuoviChefToRistorante(@PathVariable Long ristoranteId, @RequestParam Long chefId) {
+		Ristorante ristorante=ristoranteService.findById(ristoranteId);
+		Chef chef=chefService.findById(chefId);
+		
+		ristorante.getChefs().remove(chef);
+		
+		ristoranteService.save(ristorante);
+		return "redirect:/ristorante/"+ristoranteId;
 	}
 	
 	

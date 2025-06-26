@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Admin - Gestione Chef</title>
     <meta charset="UTF-8">
+    <title>Admin - Gestione Chef</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/trustfood-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<h1>Gestione Chef</h1>
+<div class="container mt-5 mb-5">
+    <h1 class="text-dark fw-bold mb-3 text-center">
+        <i class="fas fa-user-chef text-warning me-2"></i>Gestione Chef
+    </h1>
+    <div class="hero-divider mx-auto mb-4"></div>
 
-<table border="1" style="width: 100%; margin-top: 1em;">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>Origine</th>
-            <th>Azioni</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="c : ${chefs}">
-            <td th:text="${c.nome}">Nome</td>
-            <td th:text="${c.cognome}">Cognome</td>
-            <td th:text="${c.origine}">Origine</td>
-            <td>
-                <a th:href="@{'/admin/dettagliChef/' + ${c.id}}">Dettagli</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Origine</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${chefs}">
+                <td th:text="${c.nome}">Nome</td>
+                <td th:text="${c.cognome}">Cognome</td>
+                <td th:text="${c.origine}">Origine</td>
+                <td>
+                    <a th:href="@{'/admin/dettagliChef/' + ${c.id}}" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-eye me-1"></i>Dettagli
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<p style="margin-top: 1em;">
-    <a th:href="@{/admin/formNewChef}">Aggiungi nuovo chef</a>
-</p>
+    <div class="text-end">
+        <a th:href="@{/admin/formNewChef}" class="btn btn-warning fw-semibold">
+            <i class="fas fa-plus me-2"></i>Aggiungi nuovo chef
+        </a>
+    </div>
+</div>
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

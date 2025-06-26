@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Risultati Ricerca</title>
+    <title>TrustFood - Risultati Ricerca</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/trustfood-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<h1>Risultati della ricerca</h1>
+<div class="container mt-5 mb-5">
+    <h1 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-search text-warning me-2"></i>Risultati della ricerca
+    </h1>
+    <div class="hero-divider mx-auto mb-4"></div>
 
-<!-- Se ci sono chef trovati -->
-<div th:if="${chefs != null and !chefs.isEmpty()}">
-    <h2>Chef trovati</h2>
-    <ul>
-        <li th:each="c : ${chefs}">
-            <a th:href="@{'/chef/' + ${c.id}}" th:text="${c.nome + ' ' + c.cognome}">Chef</a>
-        </li>
-    </ul>
-</div>
+    <!-- Chef trovati -->
+    <div th:if="${chefs != null and !chefs.isEmpty()}" class="mb-5">
+        <h3 class="text-dark mb-3">Chef trovati</h3>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                th:each="c : ${chefs}">
+                <a th:href="@{'/chef/' + ${c.id}}" th:text="${c.nome + ' ' + c.cognome}" class="text-decoration-none text-dark fw-semibold">Chef</a>
+                <i class="fas fa-user-chef text-secondary"></i>
+            </li>
+        </ul>
+    </div>
 
-<!-- Se ci sono ristoranti trovati -->
-<div th:if="${ristoranti != null and !ristoranti.isEmpty()}">
-    <h2>Ristoranti trovati</h2>
-    <ul>
-        <li th:each="r : ${ristoranti}">
-            <a th:href="@{'/ristorante/' + ${r.id}}" th:text="${r.nome + ' - ' + r.citta}">Ristorante</a>
-        </li>
-    </ul>
-</div>
+    <!-- Ristoranti trovati -->
+    <div th:if="${ristoranti != null and !ristoranti.isEmpty()}" class="mb-5">
+        <h3 class="text-dark mb-3">Ristoranti trovati</h3>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                th:each="r : ${ristoranti}">
+                <a th:href="@{'/ristorante/' + ${r.id}}"
+                   th:text="${r.nome + ' - ' + r.citta + ' - ' + r.cucina}"
+                   class="text-decoration-none text-dark fw-semibold">Ristorante</a>
+                <i class="fas fa-store text-secondary"></i>
+            </li>
+        </ul>
+    </div>
 
-<!-- Nessun risultato trovato -->
-<div th:if="${(chefs == null or chefs.isEmpty()) and (ristoranti == null or ristoranti.isEmpty())}">
-    <p>Nessun risultato trovato.</p>
+    <!-- Nessun risultato -->
+    <div th:if="${(chefs == null or chefs.isEmpty()) and (ristoranti == null or ristoranti.isEmpty())}" class="alert alert-warning text-center">
+        Nessun risultato trovato.
+    </div>
 </div>
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

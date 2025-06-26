@@ -3,23 +3,45 @@
 <head>
     <title>TrustFood - Registrazione completata</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/trustfood-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<h1 style="text-align: center; margin-top: 2em;">Registrazione completata con successo!</h1>
-<p style="text-align: center;">Benvenuto su <strong>TrustFood</strong>.</p>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="text-dark fw-bold mb-3">
+                        <i class="fas fa-check-circle text-warning me-2"></i>Registrazione completata con successo!
+                    </h2>
+                    <p class="lead">Benvenuto su <strong class="text-danger">TrustFood</strong>.</p>
 
-<div style="max-width: 400px; margin: 2em auto; border: 1px solid #ccc; border-radius: 8px; padding: 1em;">
-    <h3 style="margin-bottom: 1em;">I tuoi dati:</h3>
-    <p><strong>Nome:</strong> <span th:text="${user.name}">Mario</span></p>
-    <p><strong>Cognome:</strong> <span th:text="${user.surname}">Rossi</span></p>
+                    <div class="card mt-4 border-0 bg-light-subtle">
+                        <div class="card-body text-start">
+                            <h5 class="fw-semibold mb-3">I tuoi dati:</h5>
+                            <p><strong>Nome:</strong> <span th:text="${user.name}">Mario</span></p>
+                            <p><strong>Cognome:</strong> <span th:text="${user.surname}">Rossi</span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="/login" class="btn btn-warning">Vai al login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

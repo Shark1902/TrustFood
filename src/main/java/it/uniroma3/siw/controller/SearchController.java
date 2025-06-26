@@ -21,7 +21,7 @@ public class SearchController {
 	        model.addAttribute("parola", parola);
 
 	        model.addAttribute("chefs", chefService.findByNomeOrCognomeOrOrigine(parola));
-	        model.addAttribute("ristoranti", ristoranteService.findByNomeOrCitta(parola));
+	        model.addAttribute("ristoranti", ristoranteService.findByNomeOrCittaOrCucina(parola));
 
 	        return "searchResults";
 	    }

@@ -20,6 +20,9 @@ public class Ristorante {
 	@NotBlank
 	private String citta;
 	
+	@NotBlank
+	private String cucina;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<ImageEntity> images;
 	
@@ -79,6 +82,16 @@ public class Ristorante {
 
 	public void setEsperienze(List<Esperienza> esperienze) {
 		this.esperienze = esperienze;
+	}
+	
+	
+
+	public String getCucina() {
+		return cucina;
+	}
+
+	public void setCucina(String cucina) {
+		this.cucina = cucina;
 	}
 
 	@Override
