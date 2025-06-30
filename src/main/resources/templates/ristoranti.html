@@ -23,12 +23,13 @@
             <thead class="table-warning">
                 <tr class="text-center">
                     <th>Nome</th>
-                    <th>Cittàa'</th>
+                    <th>Citta'</th>
                     <th>Cucina Tipica</th>
                     <th>Dettagli</th>
                 </tr>
             </thead>
             <tbody>
+				
                 <tr th:each="r : ${ristoranti}" class="align-middle">
                     <td th:text="${r.nome}"></td>
                     <td th:text="${r.citta}"></td>
